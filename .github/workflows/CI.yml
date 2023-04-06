@@ -2,7 +2,7 @@ name: CI——Benchmark
 
 on:
   push:
-    branches: [ master ]
+    branches: [ codecov ]
 
 env:
   # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
@@ -51,7 +51,9 @@ jobs:
 
     - name: Upload coverage reports to Codecov
       uses: codecov/codecov-action@v3
-      
+      with: 
+        file: ${{github.workspace}}/port/linux/testHtml.info
+
     - name: VALGRIND
       run: cd ${{github.workspace}}/port/linux && bash valgrind.sh
       
